@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya dan Pembelian Buku</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: aquamarine;
+            text-align: center; 
+        }
+
+        #gambar img {
+            width: 200px; 
+            height: auto; 
+            border-radius: 50%; 
+            margin-bottom: 20px; 
+        }
+
+        h1, p {
+            margin: 0; 
+        }
+
+        #buku {
+            text-align: justify;
+        }
+
+        #jumlah {
+            padding: 5px 10px; 
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-bottom: 10px; 
+        }
+
+        button {
+            padding: 5px 10px; 
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #007bff; 
+            color: white; 
+            cursor: pointer; 
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="gambar">
+        <img src="oasis.JPG">
+        <h1>DIAN BELA MAHARANI</h1>
+        <p>6701220068</p>
+        <p>D3SI-4601</p>
+    </div>
+    <h1>Form Pembelian Buku</h1>
+    <form>
+        <label for="jumlah">Jumlah Buku:</label>
+        <input type="text" id="jumlah" name="jumlah"><br><br>
+
+        <label for="buku">Pilih Buku:</label>
+        <select id="buku" name="buku">
+            <option value="sherlock">Sherlock</option>
+            <option value="lupin">Lupin</option>
+            <option value="aladin">Aladin</option>
+        </select><br><br>
+
+        <button type="button" onclick="pembelianBuku()">Pesan</button>
+    </form>
+
+    <script>
+        let buku = [
+            { "nama": "sherlock", "jumlah": 2 },
+            { "nama": "lupin", "jumlah": 2 },
+            { "nama": "aladin", "jumlah": 2 },
+        ];
+
+        function pembelianBuku() {
+            let jumlah = document.getElementById("jumlah").value;
+            let select = document.getElementById("buku");
+            let bukuTerpilih = select.options[select.selectedIndex].value;
+            let found = false;
+
+            if (jumlah === "") {
+                alert("Masukkan jumlah buku");
+                return;
+            }
+
+            for (let i = 0; i < buku.length; i++) {
+                if (buku[i].nama === bukuTerpilih) {
+                    found = true;
+                    if (jumlah > buku[i].jumlah) {
+                        alert("Jumlah buku tidak tersedia!");
+                    } else {
+                        alert("Silahkan ambil buku Anda!");
+                    }
+                    break;
+                }
+            }
+
+            if (!found) {
+                alert("Buku tidak ada!");
+            }
+        }
+    </script>
+</body>
+
+</html>
